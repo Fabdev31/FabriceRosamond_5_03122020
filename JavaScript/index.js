@@ -7,6 +7,7 @@ fetch('http://localhost:3000/api/furniture')
   return response.json();
 })
 .then((furnitures) => {
+  //une boucle for ou on reproduit l'opération pour chaque élément se trouvant à l'adresse indiquée
   for(const furniture of furnitures){
     document
     .getElementById("article-furniture")
@@ -23,7 +24,7 @@ fetch('http://localhost:3000/api/furniture')
     </div>
 </div>`
   }
-})
+});
 
 /*
 
