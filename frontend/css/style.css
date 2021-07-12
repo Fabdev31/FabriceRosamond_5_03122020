@@ -1,0 +1,16 @@
+
+#navbarContent{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+}
+a .fas.fa-shopping-cart{
+    font-size: 22px;
+}
+
+li:last-child {
+    display: flex;
+    flex-direction: row;  
+    align-items: baseline;
+}
