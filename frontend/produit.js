@@ -6,70 +6,101 @@ const params = new URLSearchParams(window.location.search);
 const id = params.get("id");
 
 
+//On pointe d'abord sur les différents types de varnish
+
+
+//création d'une constante pour enregistrer là ou on insérera nos éléments
+const selectVarnish = document.getElementById("choix-vernissage");
+let meuble = {};
+
+
+
 
 //methode fetch avec la valeur de l'id à la fin de l'url
 fetch(`http://localhost:3000/api/furniture/${id}`)
-.then((response) => {
-  return response.json();
-})
-.then((furniture) => {
-  alert(furniture.stringify);
-  document
+  .then((response) => {
+    return response.json();
+  })
+  .then((furniture) => {
+    meuble = { ...furniture };
+    let varnishes = "";
+    furniture.varnish.forEach(v => {
+      varnishes += `<option value =${v} id="choix-vernissage">${v}</option>`;
+    });
+    document
     .getElementById("article-furniture")
-    .innerHTML= 
-    `<div class="card">
-    <div class="card-body" id="figures">
+    .innerHTML =
+      `<div class="card">
+        <div class="card-body" id="figures">
         <h5 class="Orimeubles text-center">Ori-ameublement</h5>
         <figure>
           <figcaption>Nom du Produit : ${furniture.name}</figcaption>
           <a href="produit.html?id=${furniture._id}"><img src="${furniture.imageUrl}" 
           width="60" height="60" alt="photo de table en bois design"></a>
-          <h3>Prix : ${furniture.price/1000} $</h3>
-          <form id="formulaire-options">
+          <h3>Prix : ${furniture.price / 1000} $</h3>
           <label for="types-de-vernis">
               <select id="choix-vernissage">
-                <option value="" id="options-vernis"></option>
+              ${varnishes}
               </select>
           </label>
-          </form>
+          <div id= "quantiteArticle">
+          <select id="quantite">
+          <option value ="1"> 1 </option>
+          <option value ="2"> 2 </option>
+          <option value ="3"> 3 </option>
+          <option value ="4"> 4 </option>
+          <option value ="5"> 5 </option>
+          </select>
+          </div>
         </figure>
-        <button id="btn-ajouter-article">Ajouter au panier</button>
+        <button id="btnAjouterArticle" onclick="ajouterArticle()">Ajouter au panier</button>
     </div>
 </div>`;
-
-//On pointe d'abord sur les différents types de varnish
-const optionNombre=furniture.varnish;
-
-//création d'une constante pour enregistrer là ou on insérera nos éléments
-const select = document.getElementById("choix-vernissage");
-//insertion des éléments
-select.innerHTML =`<option value ="choix">--choisir le type de vernis--</option>`
-
-//boucle for pour afficher les options du produit
-for(let i = 0; i < optionNombre.length; i++){
-  select.innerHTML +=`<option value =${i} id="choix-vernissage">${optionNombre[i]}</option>`;
+  });
 
 
-//récupération de l'id du formulaire ce sont les données selectionnees par l'utilisateur
+function ajouterArticle() {
+ let isMeubleExistInCart = false;
+  let newMeuble = {
+    _id: meuble._id,
+    name: meuble.name,
+    price: meuble.price / 1000,
+    imageUrl: meuble.imageUrl,
+    vernis: selectVarnish.value,
+    quantity: parseInt(quantite.value)
+  }
+  let panier = JSON.parse(localStorage.getItem('cart'));
+  if (panier){
+    panier.forEach(meuble=>{
+      if(meuble._id == newMeuble._id){
+        isMeubleExistInCart=true;
+        meuble.quantity=meuble.quantity + newMeuble.quantity; 
+      }
+    })
+    if(!isMeubleExistInCart){
+      panier.push(newMeuble);
+    }
 
-  const idFormulaire = document.getElementById("choix-vernissage");
-  console.log(idFormulaire);
-
-  //mettre le choix de l'utilisateur dans une variable
- const choixUtilisateur = idFormulaire.value;
- console.log(choixUtilisateur);
-
- //selection du bouton ajouter article et envoyer le panier
- const boutonAjouterArticle = document.getElementById("btn-ajouter-article");
- console.log(boutonAjouterArticle);
- boutonAjouterArticle.addEventListener("click", (Event)=>{
-  Event.preventDefault();
-  //Récupération des valeurs du formulaire, soit nom, option du produit etc => c'est un nouvel objet que tu te crées
- })
-}
-})
+  } else{
+    panier=[];
+    panier.push(newMeuble);
+  }
+  localStorage.setItem('cart', JSON.stringify(panier))
+  //alert(`${quantite.value} ${meuble.name} ajoutée au panier`)
+  window.location.reload();
+ }
 
 
+/*
+dire pour chaque meuble envoyé au panier, rajouter dans un tableau panier   */
+
+
+/*document.getElementById("btn-ajouter-article").addEventListener("click", function(){
+  ajouterArticle(meuble)
+  article.append(meuble)
+});*/
+
+//localStorage.setItem('bgcolor', document.getElementById('bgcolor').value);
 
 
 
@@ -78,13 +109,4 @@ for(let i = 0; i < optionNombre.length; i++){
 //écouter le bouton et envoyer le panier par méthode POST
 //récupérer le formulaire
 
-
-
-/*document
-  .getElementById("options-vernis")
-  .innerHTML+=
-  `<option value="${i}">${optionNombre[i]}</option>`; 
-}*/
-
-//travail sur les options
 

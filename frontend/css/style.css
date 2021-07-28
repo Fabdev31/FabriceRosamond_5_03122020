@@ -14,3 +14,10 @@ li:last-child {
     flex-direction: row;  
     align-items: baseline;
 }
+label, input{
+    width: 160px;
+    display: inline-block;
+}
+button{
+    width: 330px;
+}
