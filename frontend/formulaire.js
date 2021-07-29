@@ -43,13 +43,13 @@ const validEmail = function(inputEmail) {
         let small = inputEmail.nextElementSibling;
     //On teste l'expression régulière
         if (emailRegexp.test(inputEmail.value)) {
-            small.innerHTML = "Adresse Valide"
+            small.innerHTML = "Email Valide";
             small.classList.remove('text-danger');
             small.classList.add('text-success');
             return true;
         }
         else {
-            small.innerHTML = "Adresse Non Valide"
+            small.innerHTML = "Email Non Valide";
             small.classList.remove('text-success');
             small.classList.add('text-danger');
             return false;
@@ -108,31 +108,31 @@ let small = inputPassword.nextElementSibling;
 
 const validFirstName = function(inputFirstName){
 let msg;
-let valid=false;
-
-//Au moins 2 caracteres
-
-if(inputFirstName.value.length <2){
-    msg= 'Le Prénom doit contenir au moins 2 caractères';
-}
-
-//creation de la regex pour validation prenom
-let firstNameRegex = new RegExp(
-    '^[A-Z][a-z]*$',
-);
+let valid = false;
+//regExp pour validation Prénom
+if(
+    !/^[A-Z]{1}[a-z'-]+/.test(inputFirstName.value)){
+        msg = "Le format du Prénom n'est pas valide";
+    }
+    //Mot de passe validé
+    else{
+        msg = 'Le Prénom est validé';
+        valid = true;
+    }
+    
 
 //Récupération de la balise small
 let small = inputFirstName.nextElementSibling;
 
 // On teste l'expression régulière
-if (firstNameRegex.test(inputFirstName.value)) {
-    small.innerHTML = "Prénom Valide"
+if (valid) {
+    small.innerHTML = "Prénom Valide";
     small.classList.remove('text-danger');
     small.classList.add('text-success');
     return true;
 }
 else {
-    small.innerHTML = "Prénom Non Valide"
+    small.innerHTML = "Prénom non Valide";
     small.classList.remove('text-success');
     small.classList.add('text-danger');
     return false;
@@ -142,7 +142,7 @@ else {
 
 // ******** Validation Nom******
 
-const validLasttName = function(inputLastName){
+const validLastName = function(inputLastName){
     let msg;
     let valid=false;
     
@@ -152,23 +152,31 @@ const validLasttName = function(inputLastName){
         msg= 'Le Nom doit contenir au moins 2 caractères';
     }
     
-    //creation de la regex pour validation du Nom
-    let lastNameRegex = new RegExp(
-        '^[A-Z][a-z]*$',
-    );
+    else if(!/[A-Z]/.test(inputLastName.value)){
+        msg= 'Le Nom doit être en majuscule';
+    }
+    //Tout en Majuscule
+    else if(/[a-z]/.test(inputLastName.value)){
+        msg= 'Le Nom doit être en lettres capitales';
+    }
+    // Mot de passe valide
+    else{
+        msg = 'Le mot de passe est validé';
+        valid = true;
+    }
     
     //Récupération de la balise small
     let small = inputLastName.nextElementSibling;
     
     // On teste l'expression régulière
-    if (lastNameRegex.test(inputLastName.value)) {
-        small.innerHTML = "Nom Valide"
+    if (valid) {
+        small.innerHTML = "Nom Valide";
         small.classList.remove('text-danger');
         small.classList.add('text-success');
         return true;
     }
     else {
-        small.innerHTML = "Nom Non Valide"
+        small.innerHTML = msg;
         small.classList.remove('text-success');
         small.classList.add('text-danger');
         return false;
@@ -177,32 +185,34 @@ const validLasttName = function(inputLastName){
 
 // ******** Validation Adresse******
 const validAddress = function(inputAddress){
-    let msg;
-    let valid=false;
-    
-    //Au moins 2 caracteres
-    
-    if(inputAddress.value.length <2){
-        msg= 'La ville doit contenir au moins 2 caractères';
-    }
-    
+
     //creation de la regex pour validation du nom de la ville
-    let addressRegex = new RegExp(
-        '^[A-Z][a-z]*$',
-    );
-    
+    //let addressRegexp = new RegExp(
+        //"^[1-9]|^[1-9][0-9]|^(100){1}[,][ a-z]+", "g"
+   // );
+   let msg;
+   let valid = false;
+   
+   if(
+    !/^[0-9]+[,][ a-z]+/.test(inputAddress.value)){
+        msg = "Le format d'adresse n'est pas valide";
+   }
+   else {
+       msg = "Adresse valide";
+       valid = true;
+   }
     //Récupération de la balise small
     let small = inputAddress.nextElementSibling;
     
     // On teste l'expression régulière
-    if (addressRegex.test(inputAddress.value)) {
-        small.innerHTML = "Nom  de ville Valide"
+    if (valid) {
+        small.innerHTML = "Adresse Valide";
         small.classList.remove('text-danger');
         small.classList.add('text-success');
         return true;
     }
     else {
-        small.innerHTML = "Nom de ville Non Valide"
+        small.innerHTML = msg;
         small.classList.remove('text-success');
         small.classList.add('text-danger');
         return false;
@@ -219,24 +229,28 @@ const validCity = function(inputCity){
     if(inputCity.value.length <2){
         msg= 'La ville doit contenir au moins 2 caractères';
     }
-    
-    //creation de la regex pour validation du nom de la ville
-    let cityRegex = new RegExp(
-        '^[A-Z][a-z]*$',
-    );
+     //Tout en Majuscule
+     else if(!/[A-Z -']$/.test(inputCity.value)){
+        msg= 'Caractères non autorisés';
+    }
+    // Mot de passe valide
+    else{
+        msg = 'Le mot de passe est validé';
+        valid = true;
+    }
     
     //Récupération de la balise small
     let small = inputCity.nextElementSibling;
     
     // On teste l'expression régulière
-    if (cityRegex.test(inputCity.value)) {
-        small.innerHTML = "Nom  de ville Valide"
+    if (valid) {
+        small.innerHTML = "Nom  de ville Valide";
         small.classList.remove('text-danger');
         small.classList.add('text-success');
         return true;
     }
     else {
-        small.innerHTML = "Nom de ville Non Valide"
+        small.innerHTML = msg;
         small.classList.remove('text-success');
         small.classList.add('text-danger');
         return false;
