@@ -30,6 +30,15 @@ form.city.addEventListener("change", function(){
     validCity(this);
 });
 
+// Ecouter la soumission du formulaire
+form.addEventListener("submit", function(e) {
+    e.preventDefault();
+    if(validEmail(form.email) && validPassword(form.password)
+    && validFirstName(form.firstName) && validLastName(form.lastName)
+    && validAddress(form.address) && validCity(form.city)){
+        form.submit;
+    }
+});
 
 // ******** Validation email******
 
