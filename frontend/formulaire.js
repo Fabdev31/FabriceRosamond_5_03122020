@@ -265,3 +265,6 @@ const validCity = function(inputCity){
         return false;
     }
     };
+
+    let recap = document.querySelector("#recapitulatif-commande");
+    console.log(recap.quantity);

@@ -1,3 +1,5 @@
+const productsContainer= document.getElementById("article-furniture");
+
 const headers = new Headers({
   "Content-type": "application/json"
 });
@@ -9,9 +11,8 @@ fetch('http://localhost:3000/api/furniture')
 .then((furnitures) => {
   //une boucle for ou on reproduit l'opération pour chaque élément se trouvant à l'adresse indiquée
   for(const furniture of furnitures){
-    document
-    .getElementById("article-furniture")
-    .innerHTML += 
+    
+    productsContainer.innerHTML += 
     `<div class="card">
     <div class="card-body" id="figures">
         <h5 class="Orimeubles text-center">Ori-ameublement</h5>
@@ -19,7 +20,7 @@ fetch('http://localhost:3000/api/furniture')
           <figcaption>${furniture.name}</figcaption>
           <a href="produit.html?id=${furniture._id}"><img src="${furniture.imageUrl}" 
           width="60" height="60" alt="photo de table en bois design"></a>
-          <h3>${furniture.price/1000} $</h3>
+          <h3>${furniture.price/100} $</h3>
         </figure>
     </div>
 </div>`

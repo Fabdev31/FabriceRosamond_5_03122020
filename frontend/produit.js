@@ -37,7 +37,7 @@ fetch(`http://localhost:3000/api/furniture/${id}`)
           <figcaption>Nom du Produit : ${furniture.name}</figcaption>
           <a href="produit.html?id=${furniture._id}"><img src="${furniture.imageUrl}" 
           width="60" height="60" alt="photo de table en bois design"></a>
-          <h3>Prix : ${furniture.price / 1000} $</h3>
+          <h3>Prix : ${furniture.price / 100} $</h3>
           <label for="types-de-vernis">
               <select id="choix-vernissage">
               ${varnishes}
@@ -64,7 +64,7 @@ function ajouterArticle() {
   let newMeuble = {
     _id: meuble._id,
     name: meuble.name,
-    price: meuble.price / 1000,
+    price: meuble.price / 100,
     imageUrl: meuble.imageUrl,
     vernis: selectVarnish.value,
     quantity: parseInt(quantite.value)
