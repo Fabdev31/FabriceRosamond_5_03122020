@@ -5,17 +5,9 @@ const headers = new Headers({
 const params = new URLSearchParams(window.location.search);
 const id = params.get("id");
 
-
-//On pointe d'abord sur les différents types de varnish
-
-
 //création d'une constante pour enregistrer là ou on insérera nos éléments
 const selectVarnish = document.getElementById("choix-vernissage");
 let meuble = {};
-
-
-
-
 //methode fetch avec la valeur de l'id à la fin de l'url
 fetch(`http://localhost:3000/api/furniture/${id}`)
   .then((response) => {
@@ -89,24 +81,5 @@ function ajouterArticle() {
   //alert(`${quantite.value} ${meuble.name} ajoutée au panier`)
   window.location.reload();
  }
-
-
-/*
-dire pour chaque meuble envoyé au panier, rajouter dans un tableau panier   */
-
-
-/*document.getElementById("btn-ajouter-article").addEventListener("click", function(){
-  ajouterArticle(meuble)
-  article.append(meuble)
-});*/
-
-//localStorage.setItem('bgcolor', document.getElementById('bgcolor').value);
-
-
-
-//mettre le choix de l'utilisateur dans une variable
-//sélection du bouton mettre l'article au panier
-//écouter le bouton et envoyer le panier par méthode POST
-//récupérer le formulaire
 
 

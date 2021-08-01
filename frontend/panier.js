@@ -138,8 +138,6 @@ const validEmail = function(inputEmail) {
         }
     };
 
-
-
 // ******** Validation Prénom******
 
 const validFirstName = function(inputFirstName){
@@ -174,7 +172,6 @@ else {
     return false;
 }
 };
-
 
 // ******** Validation Nom******
 
@@ -221,11 +218,6 @@ const validLastName = function(inputLastName){
 
 // ******** Validation Adresse******
 const validAddress = function(inputAddress){
-
-    //creation de la regex pour validation du nom de la ville
-    //let addressRegexp = new RegExp(
-        //"^[1-9]|^[1-9][0-9]|^(100){1}[,][ a-z]+", "g"
-   // );
    let msg;
    let valid = false;
    
