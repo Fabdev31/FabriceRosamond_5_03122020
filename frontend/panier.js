@@ -7,8 +7,8 @@
       <th scope="row">1</th>
       <td><img src="${meuble.imageUrl}" width="150px" alt=""></td>
       <td>${meuble.name}</td>
-      <td>${meuble.price} € </td>
-      <td>${meuble.quantity} </td>
+      <td class="">${meuble.price} € </td>
+      <td class="bg-light pl-5">${meuble.quantity} </td>
       <td><button class="btn btn-danger" onclick="deleteArticle('${meuble._id}')">Supprimer</button></td>
     </tr>`      
     })

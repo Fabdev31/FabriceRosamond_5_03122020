@@ -2,7 +2,7 @@
 #navbarContent{
     display: flex;
     justify-content: space-between;
-    align-items: center;
+    align-items: flex-end;
 
 }
 a .fas.fa-shopping-cart{
@@ -23,4 +23,20 @@ button{
 }
 .btn{
     width: 100px;;
+}
+
+#total{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+}
+
+.list-inline{
+    display: inline-block;
+    display: flex;
+    justify-content: space-between;
+}
+.list-inline-item{
+    list-style-type: none;
+    text-decoration: none;
 }
