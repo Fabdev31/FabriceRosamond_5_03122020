@@ -89,7 +89,7 @@ form.addEventListener("submit", function(e) {
         contact,
         products
       })
-      // console.log(customerOrder);
+      
       fetch('http://localhost:3000/api/furniture/order',{
         method:"POST",
         headers:{
@@ -106,7 +106,9 @@ form.addEventListener("submit", function(e) {
           }
           localStorage.setItem('summary', JSON.stringify(summaryOrder));
           console.log(serverResponse);
-        }) 
+        }).catch(error=>console.log(error));
+
+        
 
         form.submit;
         window.location="confirmation.html";
