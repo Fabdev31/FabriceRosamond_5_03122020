@@ -3,7 +3,11 @@
     display: flex;
     justify-content: space-between;
     align-items: flex-end;
+}
 
+.jumbotron {
+font-weight:600;
+font-size: 2rem;
 }
 a .fas.fa-shopping-cart{
     font-size: 22px;
@@ -36,7 +40,48 @@ button{
     display: flex;
     justify-content: space-between;
 }
-.list-inline-item{
-    list-style-type: none;
-    text-decoration: none;
+
+
+#figure-index{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+.photos-index{
+    border-radius: 5px;
+}
+.Orimeubles{
+    border: 2px rgb(blue);
+    border-radius: 5px;
+    text-shadow: slategrey;
+    text-decoration: underline;
+}
+
+figcaption{
+    font-style: italic;
+    font-weight: 400;
+}
+#choix-vernissage{
+    display: inline;
+    text-align: center;
+}
+
+#confirmation{
+    font-size: 2rem;
+    font-weight: 300;
+}
+#message-remerciement{
+    font-size: 2rem;
+    font-style:normal;
+    font-weight: 600;
+    color:limegreen
+}
+
+.positionnement-elements{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+h3{
+    font-size: 1rem;
 }

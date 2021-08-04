@@ -5,7 +5,7 @@
       panierHtml.innerHTML +=`
       <tr>
       <th scope="row">1</th>
-      <td><img src="${meuble.imageUrl}" width="150px" alt=""></td>
+      <td><img src="${meuble.imageUrl}" width="150" height="150" alt=""></td>
       <td>${meuble.name}</td>
       <td class="">${meuble.price} € </td>
       <td class="bg-light pl-5">${meuble.quantity} </td>
@@ -36,7 +36,6 @@ function deleteArticle(id){
   }
   
 }
-
 
 showTotal();
 
